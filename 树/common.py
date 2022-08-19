@@ -64,9 +64,14 @@ def build_tree(lst):
     root = build_obj.deserialize(lst)
     return root
 
+def first_order_build_tree(lst):
+    return build_tree(lst)
 
-build_obj = Codec()
-head = build_obj.deserialize([5,3,2,None,None,4,None,None,6,None,7])
-# head = build_obj.deserialize([3,1,None,2,4])
-preorder(head)
-print()
+
+if __name__ == '__main__':
+
+    build_obj = Codec()
+    head = build_obj.deserialize([5,3,2,None,None,4,None,None,6,None,7])
+    # head = build_obj.deserialize([3,1,None,2,4])
+    preorder(head)
+    print()
