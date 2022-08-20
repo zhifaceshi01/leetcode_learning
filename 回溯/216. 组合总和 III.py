@@ -19,7 +19,5 @@ class Solution:
         for i in range(start, len(candidates)):
             self.dfs(candidates, cur_lst + [candidates[i]], i+1, k-1, ret, n - candidates[i])
 
-
-
 if __name__ == '__main__':
     print(Solution().combinationSum3(3,9))
