@@ -1,0 +1,36 @@
+from typing import *
+import bisect
+from collections import *
+from queue import PriorityQueue
+from functools import lru_cache
+
+from 树.common import *
+
+MAXINF = float('inf')
+MININF = -float('inf')
+
+class Solution:
+    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
+        if root is None:
+            return root
+
+        q = [root]
+        while len(q) !=0:
+            length = len(q)
+            for t, n in zip(q[:-1], q[1:]):
+                t.next = n
+            while length != 0:
+                cur = q.pop(0)
+                length -= 1
+                if cur.left != None:
+                    q.append(cur.left)
+                if cur.right != None:
+                    q.append(cur.right)
+        return root
+
+
+if __name__ == '__main__':
+    build_obj = Codec()
+    head = build_obj.deserialize([1,2,4,None,None,5,None,None,3,6,None,None,7])
+
+    print(Solution().connect(head))
