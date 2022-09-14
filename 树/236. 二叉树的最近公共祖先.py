@@ -10,26 +10,22 @@ MAXINF = float('inf')
 MININF = -float('inf')
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        ret = [None]
-        def dfs(root,ret):
+        def dfs(root):
             if root is None:
-                return False
-            if ret[0] is not None:
-                return False
+                return None
 
-            a = dfs(root.left, ret)
-            b = dfs(root.right,ret)
+            if root in [p, q]:
+                return root
 
-            if a is True and b is True:
-                ret[0] = root
-            if (a or b) is True and root in [p,q]:
-                ret[0] = root
-            if root == p or root == q:
-                return True
+            a = dfs(root.left)
+            b = dfs(root.right)
+
+            if a is not None and b is not None:
+                return root
+
             return a or b
 
-        dfs(root, ret)
-        return ret[0]
+        return dfs(root)
 
 
 
